@@ -1,0 +1,11 @@
+CREATE TABLE store (id integer primary key, item TEXT, price INTEGER, quantity INTEGER);
+INSERT INTO store VALUES (1, "face_wash", 5.00, 10);
+INSERT INTO store VALUES (2, "toner", 3.00, 15);
+INSERT INTO store VALUES (3, "essence", 7.00, 20);
+INSERT INTO store VALUES (4, "moisturizer", 10.00, 18);
+INSERT INTO store VALUES (5, "sunscreen", 8.00, 23);
+INSERT INTO store VALUES (6, "makeup_remover", 12.00, 15);
+INSERT INTO store VALUES (7, "micellar_water", 16.00, 20);
+INSERT INTO store VALUES (8, "oil_cleanser", 9.00, 14);
+SELECT * FROM store ORDER BY price;
+SELECT SUM(quantity) from store;
