@@ -60,7 +60,7 @@ VALUES
     ;
 
 
-
+1. How many 
 
 SELECT * 
 FROM netflix_titles_info LIMIT 5
