@@ -60,4 +60,32 @@ VALUES
     ('Company KK', 'Healthcare', 150.2, 3400, 0, 16, 8, 5.3);
 
 
-1. 
+1. Which companies have paid time off days of 20 or more?
+
+SELECT company_name, paid_time_off_days
+FROM fortune_companies
+GROUP BY company_name
+HAVING paid_time_off_days > 20;
+
+
+2. Which company has less than 20 paid time off days and less than 10 weeks of maternity leave?
+
+SELECT company_name
+FROM fortune_companies
+WHERE paid_time_off_days < 20
+AND maternity_leave_weeks < 10;
+
+
+3. Which company in the Technology industry has the most revenue, and what's their revenue? 
+
+SELECT MAX(revenue), company_name
+FROM fortune_companies
+WHERE industry="Technology";
+
+
+4. 
+
+
+
+
+
