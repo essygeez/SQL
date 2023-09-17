@@ -1,4 +1,4 @@
-# This project utilized data using the PostgreSQL dialect from the following Netflix dataset:
+# This project utilized data from the following Netflix dataset:
 
 
 CREATE TABLE netflix_titles_info
@@ -60,36 +60,40 @@ VALUES
     ;
 
 
-1. How many 
+1. How many movie titles are there in the database? (movies only, not tv shows)
 
-SELECT * 
-FROM netflix_titles_info LIMIT 5
+SELECT count(*)
+FROM "netflix_titles_info"
+WHERE type='Movie';
 
-SELECT people.show_id, people.director, titles.title, titles.type
-FROM "netflix_people" people
-LEFT JOIN "netflix_titles_info" titles
-ON people.show_id = titles.show_id
 
-SELECT COUNT (*)
-FROM "netflix_titles_info" 
-WHERE type='Movie'
+2. When was the most recent batch of tv shows and/or movies added to the database?
 
-SELECT max (date(date_added))
+select max(date(date_added))
 FROM "netflix_titles_info";
+
+
+3. List all the movies and tv shows in alphabetical order.
 
 SELECT title
 FROM "netflix_titles_info"
 ORDER BY title ASC;
 
+
+4. Who was the Director for the movie The Starling?
+
 SELECT director
-FROM "netflix_titles_info" titles
-LEFT JOIN "netflix_people" people
-ON titles.show_id = people.show_id
-WHERE titles.title='The Starling';
+FROM "netflix_titles_info" 
+LEFT JOIN "netflix_people"
+ON netflix_titles_info.show_id=netflix_people.show_id
+WHERE netflix_titles_info.title='The Starling';
+
+
+
+5. What is the oldest movie in the database and what year was it made?
 
 SELECT title, release_year
-FROM netflix_titles_info
-WHERE type='Movie'
-ORDER BY release_year ASC
-LIMIT 1;
+FROM "netflix_titles_info"
+WHERE type = 'Movie'
+ORDER BY release_year ASC LIMIT 1
 
