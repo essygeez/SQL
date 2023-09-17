@@ -1,5 +1,6 @@
 #In this SQL, I'm querying a database with multiple tables in it to quantify statistics about customer and order data
 
+
 #1.How many orders were placed in January? 
 
 SELECT COUNT (orderID)
@@ -12,14 +13,12 @@ AND orderid<>'Order ID';
 
 SELECT COUNT(orderID)
 FROM BIT_DB.JanSales
-WHERE Product='iPhone'
-AND length(orderid) = 6
-AND orderid<>'Order ID';
+WHERE Product='iPhone';
 
 
 #3.Select the customer account numbers for all the orders that were placed in February. 
 
-SELECT distinct acctnum
+SELECT DISTINCT acctnum
 FROM BIT_DB.customers 
 INNER JOIN BIT_DB.FebSales
 ON customers.order_id=FebSales.orderID
@@ -29,9 +28,16 @@ AND orderid<>'Order ID';
 
 #4.Which product was the cheapest one sold in January, and what was the price? 
 
-SELECT distinct Product, Price
+SELECT MIN(price), product
 FROM BIT_DB.JanSales
-ORDER BY Price ASC LIMIT 1;
+
+OR
+
+SELECT product, min(price)
+FROM BIT_DB.JanSales Jan
+GROUP BY product, price
+ORDER BY price ASC
+LIMIT 1;
 
 
 #5.What is the total revenue for each product sold in January?
@@ -108,7 +114,7 @@ AND orderid<>'OrderID';
 
 #13. Which product brought in the most revenue in January and how much revenue did it bring in total?
 
-SELECT Product, SUM(quantity*price) 
+SELECT Product, SUM(quantity*price) AS total_revenue
 FROM BIT_DB.JanSales
 GROUP BY Product
 ORDER BY SUM(quantity*price) DESC LIMIT 1;
