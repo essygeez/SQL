@@ -8,9 +8,15 @@ INSERT INTO store VALUES (6, "makeup_remover", 12.00, 15);
 INSERT INTO store VALUES (7, "micellar_water", 16.00, 20);
 INSERT INTO store VALUES (8, "oil_cleanser", 9.00, 14);
 
-SELECT * 
-FROM store 
-ORDER BY price;
+1. SELECT * 
+  FROM store 
+  ORDER BY price;
 
-SELECT SUM(quantity) 
-FROM store;
+2. SELECT SUM(quantity) 
+  FROM store;
+
+3. SELECT MAX(price)
+  FROM store;
+
+4. SELECT MIN(price)
+  FROM store;
